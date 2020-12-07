@@ -22,6 +22,7 @@ class _AllTasksState extends State<AllTasks> {
           : Colors.blue.withOpacity(0.4),
       elevation: 10,
       child: ListTile(
+        onTap: (){},
         leading: widget.task.isDone ? Icon(Icons.done_all) : Icon(Icons.notes),
         title: Text("${widget.task.title}"),
         subtitle: Text("${widget.task.subTitle}"),
@@ -29,7 +30,7 @@ class _AllTasksState extends State<AllTasks> {
           value: widget.task.isDone,
           onChanged: (value) {
             widget.task.isDone = value;
-            tasks[widget.task.id].isDone = value;
+            tasks[widget.task.id -1 ].isDone = value;
             setState(() {});
           },
         ),

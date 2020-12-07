@@ -20,6 +20,7 @@ class _PendingTasksState extends State<PendingTasks> {
       elevation: 10,
       child: !widget.task.isDone
           ? ListTile(
+        onTap: (){},
         leading: Icon(Icons.pending),
         subtitle: Text("${widget.task.subTitle}"),
         title: Text("${widget.task.title}"),
@@ -27,7 +28,7 @@ class _PendingTasksState extends State<PendingTasks> {
           value: widget.task.isDone,
           onChanged: (value) {
             widget.task.isDone = value;
-            tasks[widget.task.id].isDone = value;
+            tasks[widget.task.id - 1].isDone = value;
             setState(() {});
           },
         ),
