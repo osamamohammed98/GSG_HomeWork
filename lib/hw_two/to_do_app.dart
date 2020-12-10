@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gsg_homework_app/hw_two/gloable_data.dart';
+import 'package:gsg_homework_app/hw_two/task.dart';
 import 'package:gsg_homework_app/hw_two/tasks_ui/all_tasks.dart';
 import 'package:gsg_homework_app/hw_two/tasks_ui/complete_tasks.dart';
 import 'package:gsg_homework_app/hw_two/tasks_ui/pending_tasks.dart';
@@ -20,9 +21,14 @@ class _ToDoAppState extends State<ToDoApp> with SingleTickerProviderStateMixin {
     _tabController = TabController(length: 3, vsync: this);
   }
 
+  showCustomDilaog(BuildContext context, Tasks tasksObj) {
+
+  }
+
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(statusBarColor: Colors.blue , systemNavigationBarColor: Colors.blue));
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
+        statusBarColor: Colors.blue, systemNavigationBarColor: Colors.blue));
     return Scaffold(
       appBar: AppBar(
         title: Text("To Do App"),
@@ -50,6 +56,31 @@ class _ToDoAppState extends State<ToDoApp> with SingleTickerProviderStateMixin {
                   .map(
                     (e) => AllTasks(
                       task: e,
+                      function: (context, e){
+                        return showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: Text("Delete"),
+                              content: Text("Are you want delete this tasks?"),
+                              actions: [
+                                FlatButton(
+                                    onPressed: () {
+                                      tasks.remove(e);
+                                      setState(() {});
+                                      Navigator.pop(context);
+                                    },
+                                    child: Text("Ok")),
+                                FlatButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: Text("No")),
+                              ],
+                            );
+                          },
+                        );
+                      },
                     ),
                   )
                   .toList(),
@@ -62,6 +93,31 @@ class _ToDoAppState extends State<ToDoApp> with SingleTickerProviderStateMixin {
                   .map(
                     (e) => CompleteTasks(
                       task: e,
+                      fun:(context, e){
+                        return showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: Text("Delete"),
+                              content: Text("Are you want delete this tasks?"),
+                              actions: [
+                                FlatButton(
+                                    onPressed: () {
+                                      tasks.remove(e);
+                                      setState(() {});
+                                      Navigator.pop(context);
+                                    },
+                                    child: Text("Ok")),
+                                FlatButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: Text("No")),
+                              ],
+                            );
+                          },
+                        );
+                      },
                     ),
                   )
                   .toList(),
@@ -74,6 +130,31 @@ class _ToDoAppState extends State<ToDoApp> with SingleTickerProviderStateMixin {
                   .map(
                     (e) => PendingTasks(
                       task: e,
+                      fun: (context, e){
+                        return showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: Text("Delete"),
+                              content: Text("Are you want delete this tasks?"),
+                              actions: [
+                                FlatButton(
+                                    onPressed: () {
+                                      tasks.remove(e);
+                                      setState(() {});
+                                      Navigator.pop(context);
+                                    },
+                                    child: Text("Ok")),
+                                FlatButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: Text("No")),
+                              ],
+                            );
+                          },
+                        );
+                      },
                     ),
                   )
                   .toList(),
@@ -110,10 +191,6 @@ class _ToDoAppState extends State<ToDoApp> with SingleTickerProviderStateMixin {
       ),
     );
   }
+
+  deleteAt(Tasks e) {}
 }
-
-
-
-
-
-
