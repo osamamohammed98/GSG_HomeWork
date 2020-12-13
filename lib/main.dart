@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:gsg_homework_app/hw_three/util/style.dart';
 
 import 'hw_one/home_work_one_ui_file.dart';
+import 'hw_three/profile.dart';
 import 'hw_two/to_do_app.dart';
 
 void main() {
@@ -13,7 +15,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light.copyWith(
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
       statusBarColor: Colors.white,
       statusBarIconBrightness: Brightness.dark,
       systemNavigationBarColor: Colors.white,
@@ -23,10 +25,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'GSG HW',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColor: colorBlue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: ToDoApp(),
+      home: Profile(),
     );
   }
 }
