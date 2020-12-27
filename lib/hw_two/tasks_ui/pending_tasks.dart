@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gsg_homework_app/hw_two/provider/task_provider.dart';
+import 'package:provider/provider.dart';
 
 import '../gloable_data.dart';
 import '../task.dart';
@@ -38,13 +40,16 @@ class _PendingTasksState extends State<PendingTasks> {
               ),
               subtitle: Text("${widget.task.subTitle}"),
               title: Text("${widget.task.title}"),
-              trailing: Checkbox(
-                value: widget.task.isDone,
-                onChanged: (value) {
-                  widget.task.isDone = value;
-                  tasks[widget.task.id - 1].isDone = value;
-                  setState(() {});
-                },
+              trailing: Consumer<TasksProvider>(
+                builder: (context, values, child) =>Checkbox(
+                  value: widget.task.isDone,
+                  onChanged: (value) {
+                    values.editTasksState(widget.task);
+                   /* widget.task.isDone = value;
+                    tasks[widget.task.id - 1].isDone = value;
+                    setState(() {});*/
+                  },
+                ) ,
               ),
             )
           : null,
